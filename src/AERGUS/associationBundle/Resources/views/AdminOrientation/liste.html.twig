@@ -1,0 +1,59 @@
+<div id="section-liste">
+   {%if verif==false%}
+	    <table id="section" width="100%">
+		    <thead>
+		        <tr>
+					<th>Sections</th>
+					<th class="act">Actions</th>
+				</tr>
+		    </thead>
+		    <tbody>
+		    	{% for section in sections %}
+					<tr>
+						<td>{{section.libelle}}</td>
+						<td class="act">
+							<span><a id="{{section.libelle}}" title="modifier" href=" {{path('aergus_association_ufr_section_modifier',{'libelle':section.libelle})}} " name="{{section.id}}" class="modifier-section action"></a></span>
+							<span><a id="{{section.libelle}}" href=" {{path('aergus_association_ufr_section_delete',{'libelle':section.libelle})}}" title="supprimer" class="supprimer-section action" name="{{section.id}}"></a></span>
+						</td>
+					</tr>
+				{% endfor %}
+		    </tbody>
+		</table>
+	{% else %}
+	Aucune section n'a été creer pour cet Ufr veuillez-en creer un!
+	{% endif %}
+</div> 
+
+   <div id="form-ajout">
+		<form action="{{path('liste',{'id':id })}}" method="post" name="{{id}}" id="section-ajout">
+			{{ form_widget(form) }}
+			<input type="submit" value="Ajouter" class="submit">
+		</form>
+   </div>
+<script>
+	/*$("document").ready(function(){
+		$('#loading').hide();
+	$('#section-ajout').submit(function(){
+		var id=$("#section-ajout").attr('name');
+		var libelle = $('#aergus_association_section_libelle').val();
+		var DATA = 'libelle=' + libelle + '&id='+ id;
+		$('#loading').show();
+		$('#aergus_association_section_libelle').val("");
+		$.ajax({
+	        type: "POST",
+	        url: "http://localhost/aergus/web/app_dev.php/aergus/ufr/" + id + "/ajouter/section",
+	        data: DATA,
+	        success: function(data){
+	        	$("#section-liste").empty().hide();
+	            $('#section-liste').html(data);
+	            $('#section-liste').show();
+	            $('#loading').hide();
+	        }
+	    });  
+
+		return false;
+	});
+
+});*/
+</script>
+<script src="{{ asset('assets/js/ajax/section_ufr.js') }}"></script>

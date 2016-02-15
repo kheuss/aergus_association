@@ -1,0 +1,38 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="Projet")
+     */
+    class Projet
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $nom;
+
+        /**
+         *@ORM\OneToMany(targetEntity="Etat", mappedBy="projet")
+         */
+        protected $etats;
+
+        public function __construct()
+        {
+            $this->etats = new ArrayCollection();
+
+        }
+
+
+    }

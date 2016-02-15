@@ -1,0 +1,13 @@
+#header,
+#sidebar,
+.act,
+.btn,
+.row,
+.entete{
+	display: none;
+}
+
+#content,
+#content-app{
+	width: 100% !important;
+}

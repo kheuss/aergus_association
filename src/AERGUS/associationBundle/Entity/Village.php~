@@ -1,0 +1,36 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="Village")
+     */
+    class Village
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $village;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Membre", mappedBy="village")
+         */
+        protected $membres;
+
+        public function __construct()
+        {
+            $this->membres = new ArrayCollection();
+        }
+
+    }

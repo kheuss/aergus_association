@@ -1,0 +1,19 @@
+aergus_association_ressortissants:
+    resource: routing/AdminRessortissants.yml
+    prefix:   /admin/ressortissant
+
+aergus_association_ufr:
+    resource: routing/AdminOrientation.yml
+    prefix:   admin/orientation/ufr
+
+aergus_association_residence:
+    resource: routing/AdminResidence.yml
+    prefix:   admin/adresse
+
+aergus_association_admin_bureau:
+    resource: routing/AdminBureau.yml
+    prefix:   admin/bureau
+
+aergus_association_admin_membre:
+    resource: routing/AdminMembre.yml
+    prefix:   admin/membre

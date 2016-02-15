@@ -1,0 +1,19 @@
+<table id="section" width="100%">
+    <thead>
+        <tr>
+			<th>Sections</th>
+			<th class="act">Actions</th>
+		</tr>
+    </thead>
+    <tbody>
+    	{% for section in sections %}
+			<tr>
+				<td>{{section.libelle}}</td>
+				<td class="act">
+					<span><a id="{{section.libelle}}" title="modifier" href=" {{path('aergus_association_ufr_section_modifier',{'libelle':section.libelle})}} " name="{{section.id}}" class="modifier-section action"></a></span>
+					<span><a id="{{section.libelle}}" href=" {{path('aergus_association_ufr_section_modifier',{'libelle':section.libelle})}}" title="supprimer" class="supprimer-section action" name="{{section.id}}"></a></span>
+				</td>
+			</tr>
+		{% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,592 @@
+#contenu{
+	position: relative;
+	background: #fff;
+	#sidebar{
+		@include grid-column(2);
+		padding: 0;
+		position: absolute;
+		bottom: 0;
+		top: 0;
+		background: $bleu;
+		#main-menu{
+		}
+	}
+	#content-app {
+	    width: 90%;
+	    margin: auto !important;
+	    padding-top: 50px !important;
+	    #content-ufr{
+	    	@include grid-column(5.7);
+	    	/*overflow: hidden;*/
+	    	.small-6{
+	    		width: auto;
+	    	}
+
+	    }
+	    /*.formulaire-ajout{
+	    	background: rgba(63,72,204,0.1);
+	    	margin-top: 30px;
+	    	h3{
+	    		text-align: center;
+	    	}
+    		form{
+    			width: 80%;
+    			margin: auto;
+    			>div{
+    				>div{
+    					margin-top: 30px;
+    					label{
+    						float: left;
+    						margin-top: 6px;
+    					}
+    					input{
+    						width: 250px;
+    					}
+    				}
+    			}
+    		}
+	    }*/
+	    .formulaire-ajout,
+/*	    .ajout-resortissant,*/
+	    #modifier-form{
+		    position: absolute;
+		    top: 0;
+		    background: #fff;
+		    padding: 40px;
+		    width: 510px;
+		    left: 38%;
+		    z-index: 14;
+		    transform:translateY(-1000px);
+		    transition-duration:0.5s;
+		    h3{
+		    	text-align: center;
+		    	color: $bleu;
+		    }
+		    form{
+		    	text-align: right;
+		    	>div{
+    				>div{
+    					margin-top: 30px;
+    				}
+    			}
+		    	#aergus_association_ufr,
+		    	#aergus_ufr_modif_form{
+		    		width: 410px;
+			    	label{
+			    		display: inline;
+			    		width: 150px;
+			    	}
+			    	input{
+			    		display: inline;
+			    		width: 300px;
+			    		margin-left: 20px;
+			    	}
+		    	}
+		    }
+		    .ajout-form {
+			    border: medium none #FFDEAD;
+			    height: 35px;
+			    padding: 0px 20px;
+			    background: #3F48CC none repeat scroll 0% 0%;
+			    color: #FFF;
+			    text-align: right;
+			    float: right;
+			    margin: 30px 0px;
+			    width: auto !important;
+			    margin-right: 30px;
+			}
+			.annuler {
+			    height: 35px;
+			    line-height: 35px !important;
+			    padding: 0px 20px !important;
+			    border: medium none;
+			    margin-top: 10px ;
+			    margin-right: 0px !important;
+			    margin-bottom: 10px;
+			    background: #3F48CC none repeat scroll 0% 0%;
+			    margin-left: 111px;
+			}
+		}
+
+		#section-modifier{
+			label{
+				display: inline-block;
+				width: 70px;
+			}
+			.libelle-modifier-section{
+				width: 355px;
+				display: inline-block;
+			}
+		}
+	    #sections{
+	    	@include grid-column(5.7);
+	    	background:  rgba(63, 72, 204,0.12);
+/*	    	padding: 20px;*/
+	    	#section-liste{
+	    		margin: 30px auto;
+	    		width: 85%;
+	    	}
+	    	#form-ajout{
+	    		width: 85%;
+	    		margin: auto;
+	    		#aergus_association_section_libelle{
+	    			float: left;
+	    			height: 35px;
+	    			width: 80% !important;
+	    		}
+	    		.submit{
+	    			float: right;
+	    			height: 35px !important;
+	    			line-height: 35px !important;
+	    		}
+
+	    	}
+	    }
+
+	    table{
+	    	thead{
+	    		background: $bleu;
+	    		tr{
+	    			th{
+	    				color: #fff;
+	    			}
+	    		}
+	    	}
+	    	tbody{
+	    		tr{
+    				position: relative;
+    				/*cursor: pointer;*/
+	    			td{
+	    				border:1px solid rgba(0,0,0,0.02);
+	    				border-collapse: collapse;
+	    				/*a{
+	    					&:before{
+	    						position:absolute;
+	    						content: "";
+	    						top: 0;
+	    						left: 0;
+	    						right: 0;
+	    						bottom: 0;
+	    						display: block;
+	    					}
+	    				}*/
+	    				&:last-child{
+	    					text-align: center;
+	    				}
+	    			}
+	    			.action{
+	    				position: relative;
+	    				padding: 0 3px;
+	    				cursor: pointer;
+	    				&:before{
+	    					font-family: 'aergus';
+	    					font-size: 16px;
+	    					color: $bleu-fonce;
+	    				}
+	    			}
+	    			.ligne:before{
+	    				content: "\f0ca";
+	    			}
+	    			.modifier:before,
+	    			.modifier-section:before{
+	    				content: "\f044";
+	    			}
+	    			.supprimer:before,
+	    			.supprimer-section:before{
+	    				content: "\f014";
+	    			}
+    				&:hover{
+    				}
+
+	    		}
+	    		.odd{
+	    			background: #fff;
+	    			.sorting_1{
+	    				background: #fff;
+	    			}
+	    		}
+	    		.even{
+	    			background: rgba(63,72,204,0.1);
+	    			.sorting_1{
+	    				background: rgba(63,72,204,0.1);
+	    			}
+	    		}
+	    	}
+	    }
+	}
+	#content{
+		@include grid-column(10);
+		padding: 0;
+		float: right;
+	}
+}
+
+#ufr_paginate,
+#ressortissant_paginate,
+#ressortissant-restaurer_paginate,
+.dataTables_paginate,
+#block_paginate,
+#village_paginate,
+#bureau_paginate,
+#fonction_paginate{
+	.paginate_button{
+		border: none;
+		padding: 0;
+		&:hover{
+			background:none;
+		}
+		&:active{
+			box-shadow: none;
+			background: none;
+		}
+	}
+}
+
+.body-confirm{
+	.overlay{
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 13;
+	}
+	#delete{
+		display: block !important;
+	}
+	
+}
+
+#delete{
+	display: none;
+	position: absolute;
+	left: 30%;
+	top: 20px;
+	z-index: 14;
+	background: #fff;
+	/*padding: 75px;*/
+	text-align: center;
+	.confirmed{
+		background: $bleu;
+		border: none;
+		margin-right: 10px;
+	}
+	.content-sup{
+		padding: 75px;
+	}
+}
+.body-overlay,
+.body-overlay-ress{
+	.overlay{
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 13;
+	}
+}
+.body-overlay{
+	.formulaire-ajout{
+		transform:translateY(0px) !important;
+	}
+}
+/*.body-overlay-ress{
+	.ajout-resortissant{
+		transform:translateY(0px) !important;
+	}
+}*/
+
+.body-confirm-mod{
+	.overlay{
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 13;
+	}
+	#modifier-form{
+		transform:translateY(0px) !important;
+	}
+}
+.submit{
+	height: 30px;
+	border: none;
+	color: #fff;
+	line-height: 30px;
+	background: rgb(63,72,204);
+	padding: 0 10px;
+}
+
+#loading{
+	background: url('../images/loader.gif') no-repeat;
+	width: 150px;
+	height: 70px;
+	position: absolute;
+	left: 50%;
+	top: 10px;
+	z-index: 999;
+}
+.click{
+	&:after{
+		font-family: 'aergus';
+		content: "\e802";
+		font-size: 72px;
+	    position: absolute;
+	    right: -51px;
+	    color: #fff;
+	    z-index: 2;
+	}
+}
+
+#modifier-form{
+	top: 50px !important;
+	left: 26% !important;
+}
+
+.act{
+	width: 100px;
+	text-align: center;
+}
+
+.entete{
+	height: 40px;
+	line-height: 40px !important;
+	padding: 0 20px;
+	background: rgb(243,243,243);
+	margin-bottom: 20px;
+	.ajout{
+		float: right;
+		position: relative;
+		cursor: pointer;
+		&:before{
+			font-family:'aergus';
+			content: "\ea0a";
+			font-size: 35px;
+			color: $bleu-fonce;
+		}
+	}
+	.liste{
+		color: $bleu;
+		font-size: 17px;
+		position: relative;
+		padding-left: 45px;
+		&:before{
+			font-family:'aergus';
+			content: "\f0ca";
+			font-size: 35px;
+			position: absolute;
+			top: -10px;
+			left: -10px;
+			color: $bleu-fonce;
+		}
+	}
+}
+#ufr_filter,
+#ufr_length,
+#ressortissant_length,
+#ressortissant_filter,
+#ressortissant-restaurer_length,
+#ressortissant-restaurer_filter,
+.dataTables_length,
+.dataTables_filter {
+    /*padding-top: 15px;*/
+    select,
+    input{
+    	border:none;
+    	background: rgba(63,72,204,0.1);
+    	height: 20px;
+    	padding: 0 !important;
+    }
+    input{
+    	display: inline;
+    	width: auto;;
+    }
+}
+
+
+/*
+	Ressortissants
+*/
+#bureau-ajouter,
+#bureau-modifier{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 470px !important;
+}
+
+#ressortissant-ajouter,
+#ressortissant-modifier,
+#bureau-ajouter,
+#bureau-modifier{
+	width: 525px;
+	text-align: right;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	#aergus_association_ressortissant{
+		>div{
+			margin-bottom: 20px;
+			margin-top: 0 !important;
+		}
+	}
+	label{
+		width: auto;
+		display: inline;
+		margin-right: 20px;
+	}
+	input,select{
+		width: 350px;
+		display: inline;
+	}
+	input{
+		background: #fff;
+	}
+	.ajout-form {
+	    border: medium none;
+	    height: 35px;
+	    padding: 0 15px;
+	    width: auto !important;
+	    background: $bleu;
+	    color: #fff;
+	    margin: 0 0px 0px 0 !important;
+	}
+}
+
+.ajout-resortissant{
+	width: auto !important;
+	left: 16% !important;
+	top: -115px !important;
+	.annuler{
+		margin-top: 0 !important;
+		margin-left: 180px !important;
+		margin-bottom: 0 !important;
+	}
+}
+
+.ui-datepicker-header{
+	background: $bleu-fonce;
+	color: #fff;
+}
+.ui-state-default{
+	background: $bleu !important;
+	color: #fff !important;
+}
+.ui-state-highlight{
+	background: $bleu-fonce !important;
+}
+.ui-state-hover{
+	background: $bleu-fonce !important;
+}
+
+.error{
+	float: left;
+    font-size: 10px;
+    margin-bottom: 5px;
+    margin-left: -30px;
+    width: 100%;
+    color: red;
+}
+
+#groupe-d-action{
+    text-align: right;
+    margin-bottom: 30px;
+    .btn{
+    	border: none;
+    	background: $bleu;
+    	&:hover{
+    		background:$bleu-fonce !important;
+    	}
+    }
+}
+
+.afficher-ressortissant{
+	.glyphicon-list-alt{
+		color: $bleu-fonce;
+	}
+}
+
+.information {
+    margin: auto;
+    width: 500px;
+    >div{
+    	margin-bottom: 30px;
+    	span{
+    		text-align: right;
+    	}
+    	&:first-child{
+    		
+    	}
+    }
+}
+
+.cocher{
+	width: 50px !important;
+}
+
+input[type="search"] {
+    box-sizing: border-box !important;
+} 
+
+.row{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+#aergus_association_village,
+.form-group{
+	input{
+		float: left;
+		width: 83%;
+		margin-right: 2%;
+		height: 35px;
+	}
+}
+.action-adresse{
+	width: 40px;
+	text-align: center;
+}
+
+#label-file {
+    position: absolute;
+    right: 100px;
+    top: -18px;
+}
+
+/*****************************Membre**********************************/
+
+.entete-info {
+    background: #3f48cc none repeat scroll 0 0;
+    border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 20px;
+    padding: 8px;
+    text-align: center;
+    p{
+    	margin-bottom: 0;
+    }
+}
+
+.niveau-res{
+	/*clear: both;*/
+}
+
+#membre-ajouter{
+	margin:0 !important;
+	input,
+	select{
+		width: 90% !important;
+		border-radius: 4px;
+	}
+	.error{
+		text-align: center;
+	}
+}
+
+.form-ress{
+	padding-top: 35px;
+	border: 1px solid #ddd;
+}

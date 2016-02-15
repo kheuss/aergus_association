@@ -1,0 +1,27 @@
+<div class="modal-dialog modal-lg">
+  	<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modifier ce ressortissant</h4>
+        </div>
+        <div class="modal-body">
+         	<form action="{{path('aergus_association_ressortissant_modifier_confirmer')}}" method="post" name="{{id}}" id="ressortissant-modifier">
+				{{ form_errors(form) }}
+				{{ form_widget(form) }}
+				<input type="submit" value="Mettre à jour" class="ajout-form">
+			</form> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+  	</div>
+</div>
+<script>
+	$("document").ready(function(){
+		$("form input.date").datepicker({
+		    dateFormat: 'dd/mm/yy',
+		    firstDay:1
+		}).attr("readonly","readonly");
+	});
+</script>
+<script src="{{ asset('assets/js/ajax/ressortissants.js') }}"></script>

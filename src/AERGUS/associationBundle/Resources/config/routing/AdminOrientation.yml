@@ -1,0 +1,63 @@
+#page d'accueil des ufr
+aergus_association_ufr_home:
+    pattern: /
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:index}
+
+# la liste des sections pour un ufr
+liste:
+    pattern: /{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:liste}
+    requirements:
+        id: \d+
+
+# Supprimer un ufr
+aergus_association_ufr_delete:
+    pattern: /delete/{libelle}
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:supprimerUfr}
+
+#confirmer la suppression d'un ufr
+aergus_association_ufr_delete_confirmed:
+    pattern: /delete/{libelle}/confirmed
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:supprimerConfirmedUfr}
+
+# ajouter une nouvelle section 
+addSection:
+    pattern: /{id}/ajouter/section
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:addSection}
+    requirements:
+        id: \d+
+
+# ajuter un nouveau ufr 
+ajouter:
+    pattern: /ajouter
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:ajouter}
+
+#modifier un ufr
+aergus_association_ufr_modifier:
+    pattern: /modifier/{libelle}
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:modifierUfr}
+
+#action de modifier un ufr
+aergus_association_ufr_modifier_confirm:
+    pattern: /modifier
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:modifierConfirmUfr}
+
+# action de modifier une sectio
+aergus_association_ufr_section_modifier:
+    pattern: /section/modifier/{libelle}
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:modifierUfrSection}
+
+#action de modifier une section
+aergus_association_ufr_section_modifier_confirm:
+    pattern: /section/modifier
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:modifierConfirmUfrSection}
+
+# Supprimer une section
+aergus_association_ufr_section_delete:
+    pattern: /section/delete/{libelle}
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:supprimerUfrSection}
+
+#confirmer la suppression d'une section
+aergus_association_ufr_section_delete_confirmed:
+    pattern: /section/delete/{libelle}/confirmed
+    defaults: { _controller: AERGUSassociationBundle:AdminOrientation:supprimerConfirmedUfrSection}

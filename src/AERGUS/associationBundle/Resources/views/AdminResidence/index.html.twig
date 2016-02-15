@@ -1,0 +1,125 @@
+{% extends 'AERGUSassociationBundle::layout.html.twig'%}
+{% block body %}
+	<div id="content-residence">
+		<div class="partie-village col-md-6">
+			<div class="entete">
+				<span class="liste">Listes des villages</span>
+			</div>
+			<div id="zone-village">
+				<table id="village" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+							<th>Villages</th>
+							<th class="action-adresse">Actions</th>
+						</tr>
+			        </thead>
+			        <tbody>
+			        	{% for Village in villages %}
+							<tr>
+								<td>{{Village.village}}</td>
+								<td class="action-adresse">
+									<span><a id="{{Village.village}}" title="modifier" name="{{Village.id}}" class="modifier modifier-village action"></a></span>
+									<span id="{{Village.village}}" title="supprimer" class="supprimer supprimer-village action"  name="{{Village.id}}"></span>
+								</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>
+			</div>
+			<div class="formulaire-ajout-village">
+				<form role="form" class="aergus_association_village" action="{{path('aergus_association_residence_ajouter_village')}}" method="post" name="aergus_association_village" id="village-ajouter">
+					{{ form_errors(formVillage) }}
+					<div class="form-group">
+						{{ form_widget(formVillage.village, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_rest(formVillage) }}
+					<input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+				</form>
+			</div>
+		</div>
+		<div class="partie-block col-md-6">
+			<div class="entete">
+				<span class="liste">Listes des blocks</span>
+			</div>
+			<div id="zone-block">
+				<table id="block" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+							<th>Block/G</th>
+							<th class="action-adresse">Actions</th>
+						</tr>
+			        </thead>
+			        <tbody>
+			        	{% for Block in blocks %}
+							<tr>
+								<td>{{Block.block}}</td>
+								<td class="action-adresse">
+									<span><a id="{{Block.block}}" title="modifier" name="{{Block.id}}" class="modifier modifier-block action"></a></span>
+									<span id="{{Block.block}}" title="supprimer" class="supprimer supprimer-block action"  name="{{Block.id}}"></span>
+								</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>
+			</div>
+			<div class="formulaire-ajout-block">
+				<form role="form" class="aergus_association_block" action="{{path('aergus_association_residence_ajouter_block')}}" method="post" name="aergus_association_block" id="block-ajouter">
+					{{ form_errors(formBlock) }}
+					<div class="form-group">
+						{{ form_widget(formBlock.block, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_rest(formBlock) }}
+					<input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="supprimer-un-village" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'un village</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer ce village?</div>
+		        </div>
+		        <div class="modal-footer">
+	         		<button type="button" class="btn btn-primary supprimer-le-village" >Oui</button>
+		           <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+
+    <div class="modal fade" id="supprimer-un-block" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'un block</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer ce block?</div>
+		        </div>
+		        <div class="modal-footer">
+	         		<button type="button" class="btn btn-primary supprimer-le-block" >Oui</button>
+		           <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+	<script>
+		$("document").ready(function(){
+			$('.display').DataTable( {
+		        "language": {
+		            "lengthMenu": "_MENU_ ",
+		            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+		            "info": " _PAGE_ sur _PAGES_",
+		            "infoEmpty": "No records available",
+		            "infoFiltered": "(filtered from _MAX_ total records)"
+		        }
+		    });
+		});
+	</script>
+{% endblock %}

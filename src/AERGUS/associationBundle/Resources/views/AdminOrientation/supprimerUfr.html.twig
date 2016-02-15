@@ -1,0 +1,17 @@
+<div class="content-sup">
+	<div class="content">
+		<table>
+			<tr>
+				<td>Nom</td>
+				<td>{{ufr.libelle}}</td>
+			</tr>
+			<tr>
+				<td>Nom complet</td>
+				<td>{{ufr.NomComplet}}</td>
+			</tr>
+		</table>
+	</div>
+	<button name="{{ufr.id}}" id="{{ufr.libelle}}" class="confirmed-yes confirmed">Supprimer</button>
+	<button class="confirmed-no confirmed">Annuler</button>
+</div>
+<script src="{{ asset('assets/js/ajax/section_ufr.js') }}"></script>

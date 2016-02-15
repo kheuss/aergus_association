@@ -1,0 +1,37 @@
+<table id="bureau" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+			<th>Bureaux</th>
+			<th>Programmes</th>
+			<th class="act">Actions</th>
+		</tr>
+    </thead>
+    <tbody>
+    	{% for bureau in bureaux %}
+			<tr>
+				<td>{{bureau.nomBureau}}</td>
+				<td> <a href="../../../../fichier/{{bureau.nomPath}}"> <span class="glyphicon glyphicon-file"></span> </a> </td>
+				<td class="act">
+					<span><a title="modifier" name="{{bureau.id}}" class="modifier modifier-bureau action" href=""></a></span>
+					<span title="supprimer" class="supprimer-bureau supprimer action" name="{{bureau.id}}"></span>
+				</td>
+			</tr>
+		{% endfor %}
+    </tbody>
+</table>
+
+<script>
+	$("document").ready(function(){
+		$("document").ready(function(){
+			$('#bureau').DataTable( {
+		        "language": {
+		            "lengthMenu": "_MENU_ ",
+		            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+		            "info": " _PAGE_ sur _PAGES_",
+		            "infoEmpty": "No records available",
+		            "infoFiltered": "(filtered from _MAX_ total records)"
+		        }
+		    });
+		});
+	});
+</script>

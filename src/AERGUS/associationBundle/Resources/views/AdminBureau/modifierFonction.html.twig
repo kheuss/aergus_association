@@ -1,0 +1,62 @@
+{% if type== 'formulaire' %}
+  <div class="modal-dialog content-bureau-popup">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modifier cette fonction</h4>
+      </div>
+      <div class="modal-body">
+          <div class="formulaire-ajout-village">
+              <form role="form" class="aergus_association_fonction" action="{{path('aergus_association_fonction_modifier',{'id':id})}} " method="post" name="aergus_association_fonction" id="fonction-modifier">
+                {{ form_errors(form) }}
+                <div class="form-group">
+                  {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_rest(form) }}
+                <input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+              </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+{% else %}
+    <table id="fonction" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+              <th>Fonctions</th>
+              <th class="act">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for fonction in fonctions %}
+              <tr>
+                <td>{{fonction.libelle}}</td>
+                <td class="act">
+                  <span><a title="modifier" class="modifier modifier-fonction action" href="{{path('aergus_association_fonction_modifier',{'id':fonction.id})}}"></a></span>
+                  <span title="supprimer" class="supprimer-fonction supprimer action" name="{{fonction.id}}"></span>
+                </td>
+              </tr>
+          {% endfor %}
+        </tbody>
+  </table>
+  <script>
+    $("document").ready(function(){
+      $("document").ready(function(){
+        $('#fonction').DataTable( {
+              "language": {
+                  "lengthMenu": "_MENU_ ",
+                  "zeroRecords": "Desole aucun resultat n'a été trouvé",
+                  "info": " _PAGE_ sur _PAGES_",
+                  "infoEmpty": "No records available",
+                  "infoFiltered": "(filtered from _MAX_ total records)"
+              }
+          });
+      });
+    });
+  </script>
+{% endif %}
+<script src="{{ asset('assets/js/ajax/bureau.js') }}"></script>

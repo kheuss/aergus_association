@@ -1,0 +1,16 @@
+#header,
+#contenu{
+	@include grid-row();
+	max-width: 100%;
+}
+html,body{
+	height: 100%;
+}
+body{
+	min-height: 100%;
+}
+#contenu-app{
+}
+#contenu{
+	min-height: 72%;
+}

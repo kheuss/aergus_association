@@ -1,0 +1,15 @@
+<div class="error" style="color:"></div>
+<form action="{{path('aergus_association_ufr_section_modifier',{'libelle': section.libelle})}}" method="post" name="{{section.id}}" id="section-modifier">
+	<div id="aergus_ufr_section_modif_form">
+		<div>
+			{{ form_label(form.libelle,"Section")}}
+			{{ form_errors(form.libelle)}}
+			{{ form_widget(form.libelle, {'attr': {'class': 'libelle-modifier-section'}}) }}
+		</div>
+	</div>
+	{{ form_widget(form)}}
+	<input type="submit" value="Modifier" class="ajout-form">
+</form>
+<button class="annuler">Annuler</button> 
+
+<script src="{{ asset('assets/js/ajax/section_ufr.js') }}"></script>

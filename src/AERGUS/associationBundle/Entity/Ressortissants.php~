@@ -1,0 +1,281 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+    use Gedmo\Mapping\Annotation as Gedmo;
+    use Symfony\Component\Validator\Constraints as Assert;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="Ressortissant")
+     */
+    class Ressortissants
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string", length=100)
+         * @Assert\NotBlank(message="Ce champ doit etre renseigné")
+         * @Assert\Regex(
+         *     pattern="/^[a-zA-Z ]{2,}$/",
+         *     match=true,
+         *     message="Le nom doit comporter que des lettres et en avoir au moins deux"
+         * )
+         */
+        protected $nom;
+
+        /**
+         * @ORM\Column(type="string")
+         * @Assert\Regex(
+         *     pattern="/^[a-zA-Z]{2,}$/",
+         *     match=true,
+         *     message="Le prenom doit comporter que des lettres et en avoir au moins deux"
+         * )
+         */
+        protected $prenom;
+
+        /**
+         * @ORM\Column(type="string")
+         * @Assert\Regex(
+         *     pattern="/^77|76|78 ?\d{3} ?\d{2} ?\d{2}$/",
+         *     match=true,
+         *     message="Format 7(7,6,8) XXX XX XX ou 7(7,6,8)XXXXXXX"
+         * )
+         */
+        protected $numeroDeTelephone;
+
+        /**
+         * @var \DateTime $dateDeNaissance
+         * @ORM\Column(type="datetime")
+         */
+        protected $dateDeNaissance;
+
+        /**
+         * @ORM\Column(type="string")
+         * @Assert\Regex(
+         *     pattern="/^\d{4}$/",
+         *     match=true,
+         *     message="Une annee doit avoir que quatre chiffre"
+         * )
+         */
+        protected $anneeVenu;
+
+        /**
+         * @ORM\Column(type="boolean")
+         */
+        protected $etat;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Section", inversedBy="ressortissants")
+         * @ORM\JoinColumn(name="section_id", referencedColumnName="id")
+         */
+        protected $section;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Membre", mappedBy="ressortissant")
+         */
+        protected $membres;
+
+        public function __construct()
+        {
+            $this->etat=true;
+            $this->membres = new ArrayCollection();
+        }
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Ressortissants
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return Ressortissants
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set numeroDeTelephone
+     *
+     * @param string $numeroDeTelephone
+     *
+     * @return Ressortissants
+     */
+    public function setNumeroDeTelephone($numeroDeTelephone)
+    {
+        $this->numeroDeTelephone = $numeroDeTelephone;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroDeTelephone
+     *
+     * @return string
+     */
+    public function getNumeroDeTelephone()
+    {
+        return $this->numeroDeTelephone;
+    }
+
+    /**
+     * Set dateDeNaissance
+     *
+     * @param \DateTime $dateDeNaissance
+     *
+     * @return Ressortissants
+     */
+    public function setDateDeNaissance($dateDeNaissance)
+    {
+        $dateDeNaissance= new \DateTime();
+        $this->dateDeNaissance = $dateDeNaissance;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDeNaissance
+     *
+     * @return \DateTime
+     */
+    public function getDateDeNaissance()
+    {
+        return $this->dateDeNaissance;
+    }
+
+    /**
+     * Set anneeVenu
+     *
+     * @param string $anneeVenu
+     *
+     * @return Ressortissants
+     */
+    public function setAnneeVenu($anneeVenu)
+    {
+        $this->anneeVenu = $anneeVenu;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeVenu
+     *
+     * @return string
+     */
+    public function getAnneeVenu()
+    {
+        return $this->anneeVenu;
+    }
+
+    /**
+     * Set section
+     *
+     * @param \AERGUS\associationBundle\Entity\Section $section
+     *
+     * @return Ressortissants
+     */
+    public function setSection(\AERGUS\associationBundle\Entity\Section $section = null)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return \AERGUS\associationBundle\Entity\Section
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
+
+    /**
+     * Add membre
+     *
+     * @param \AERGUS\associationBundle\Entity\Membre $membre
+     *
+     * @return Ressortissants
+     */
+    public function addMembre(\AERGUS\associationBundle\Entity\Membre $membre)
+    {
+        $this->membres[] = $membre;
+
+        return $this;
+    }
+
+    /**
+     * Remove membre
+     *
+     * @param \AERGUS\associationBundle\Entity\Membre $membre
+     */
+    public function removeMembre(\AERGUS\associationBundle\Entity\Membre $membre)
+    {
+        $this->membres->removeElement($membre);
+    }
+
+    /**
+     * Get membres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMembres()
+    {
+        return $this->membres;
+    }
+}

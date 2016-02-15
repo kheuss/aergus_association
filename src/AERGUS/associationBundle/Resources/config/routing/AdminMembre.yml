@@ -1,0 +1,8 @@
+#page d'accueil des membres d'un bureau
+aergus_association_admin_membre_home:
+    pattern: /{bureau}
+    defaults: { _controller: AERGUSassociationBundle:AdminMembre:index}
+
+aergus_association_admin_membre_ajouter:
+    pattern: /{bureau}/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminMembre:ajouter}

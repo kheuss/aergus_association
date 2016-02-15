@@ -1,0 +1,20 @@
+#page d'accueil adresse
+aergus_association_residence_home:
+    pattern: /
+    defaults: { _controller: AERGUSassociationBundle:AdminResidence:index}
+
+aergus_association_residence_ajouter_village:
+    pattern: /village/ajouter
+    defaults: { _controller: AERGUSassociationBundle:AdminResidence:ajouterVillage}
+
+aergus_association_residence_ajouter_block:
+    pattern: /block/ajouter
+    defaults: { _controller: AERGUSassociationBundle:AdminResidence:ajouterBlock}
+
+aergus_association_residence_supprimer_village:
+    pattern: /delete/village/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminResidence:deleteVillage}
+
+aergus_association_residence_supprimer_block:
+    pattern: /delete/block/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminResidence:deleteBlock}

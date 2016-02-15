@@ -1,0 +1,42 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="Reunion")
+     */
+    class Reunion
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $ordreDuJour;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $pv;
+
+        /**
+         * @ORM\Column(type="date")
+         */
+        protected $dateReunion;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Bureau", inversedBy="reunions")
+         * @ORM\JoinColumn(name="Bureau_id", referencedColumnName="id")
+         */
+        protected $bureau;
+
+    }

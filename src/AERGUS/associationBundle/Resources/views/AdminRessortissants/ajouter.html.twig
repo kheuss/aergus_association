@@ -1,0 +1,48 @@
+<table id="ressortissant" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+			<th>Prenom</th>
+			<th>Nom</th>
+			<th>Numero de Téléphone</th>
+			<th>Date de Naissance</th>
+			<th>Section</th>
+			<th>Bachelier</th>
+			<th class="act">Actions</th>
+		</tr>
+    </thead>
+    <tbody>
+    	{% for ressortissant in ressortissants %}
+			<tr>
+				<td>{{ressortissant.prenom}}</td>
+				<td>{{ressortissant.nom}}</td>
+				<td>{{ressortissant.numeroDeTelephone}}</td>
+				<td>{{ressortissant.dateDeNaissance|date('d-m-Y')}}</td>
+				<td>{{ressortissant.section.libelle}}</td>
+				<td>{{ressortissant.anneeVenu}}</td>
+				<td class="act">
+					<span><a title="afficher ces informations" name="{{ressortissant.id}}" class="ligne action"></a></span>
+					<span><a title="modifier" name="{{ressortissant.id}}" class="modifier action"></a></span>
+					<span><a title="supprimer" class="supprimer action" name="{{ressortissant.id}}"></a></span>
+				</td>
+			</tr>
+		{% endfor %}
+    </tbody>
+</table>
+
+<script>
+	$("document").ready(function(){
+		$("document").ready(function(){
+			$('.display').DataTable( {
+		        "language": {
+		            "lengthMenu": "_MENU_ ",
+		            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+		            "info": " _PAGE_ sur _PAGES_",
+		            "infoEmpty": "No records available",
+		            "infoFiltered": "(filtered from _MAX_ total records)"
+		        }
+		    });
+		});
+	});
+</script>
+<script src="{{ asset('assets/js/ajax/ressortissants.js') }}"></script>	
+

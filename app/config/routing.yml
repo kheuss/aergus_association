@@ -1,0 +1,5 @@
+aergu_sassociation:
+    resource: "@AERGUSassociationBundle/Resources/config/routing.yml"
+    prefix:   /aergus
+
+

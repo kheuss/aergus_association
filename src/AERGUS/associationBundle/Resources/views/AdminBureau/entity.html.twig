@@ -1,0 +1,16 @@
+{% block entity_widget %}
+{% spaceless %}
+        <div>
+            <label for="fichier" title="ajouter le programme" id="label-file">
+                <i class="glyphicon glyphicon-paperclip"></i>
+            </label>
+            <input id="fichier" class="ajax_file hidden" type="file" data-target="{{ path('aergus_association_bureau_ajouter_programme') }}">
+
+            <div class="progress hidden" style="width: 150px">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+            <input name="file" type="hidden" id="id">
+        </div>
+    {% endspaceless %}
+{% endblock entity_widget %}
+    

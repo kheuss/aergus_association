@@ -1,0 +1,49 @@
+#page d'accueil des ressortissants
+aergus_association_ressortissant_home:
+    pattern: /
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:index}
+
+# formulaire ajouter un ressortissant
+aergus_association_ressortissant_ajouter:
+    pattern: /ajouter
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:ajouter}
+
+# formulaire ajouter un ressortissant
+aergus_association_ressortissant_ajouter_liste:
+    pattern: /ajouter/liste
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:ajouterListe}
+
+# Supprimer un ressortissant
+aergus_association_ressortissant_delete:
+    pattern: /delete/{nom}
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:supprimer}
+
+# Modifier un ressortissant
+aergus_association_ressortissant_edit:
+    pattern: /edit/{nom}
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:modifier}
+
+# Modifier un ressortissant confirmer
+aergus_association_ressortissant_modifier_confirmer:
+    pattern: /modifier/confirmer
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:modifierConfirmer}
+
+# Afficher un ressortissant
+aergus_association_ressortissant_afficher:
+    pattern: /details/{nom}
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:afficher}
+
+# Cocher les ressortissants a restauré
+aergus_association_ressortissant_cocher_restaurer:
+    pattern: /cocher-restaurer
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:cocherRestaurer}
+
+# Restaurer les ressortissants
+aergus_association_ressortissant_restaurer:
+    pattern: /restaurer
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:restaurer}
+
+# Suppression multiple
+aergus_association_ressortissant_supprimer_multiple:
+    pattern: /supprimer-tous
+    defaults: { _controller: AERGUSassociationBundle:AdminRessortissants:supprimerMultiple}

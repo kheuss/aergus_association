@@ -1,0 +1,167 @@
+{% if type=='formulaire'%}
+	<div class="modal-dialog modal-lg">
+	  	<div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Inscription du ressortissant</h4>
+	          <div id="loading"></div>
+	        </div>
+	        <div class="modal-body row">
+	        	<div class="info-ressortissant col-lg-6">
+	        		<div class="entete-info">
+	        			<p>Information du ressortissant</p>
+	        		</div>
+	        		<div class="info-ress list-group">
+	        			<div class="list-group-item"> <span>Prénom : </span> <span>{{ressortissant.prenom}}</span> </div>
+	        			<div class="list-group-item"> <span>Nom : </span> <span>{{ressortissant.nom}}</span> </div>
+	        			<div class="list-group-item"> <span>Date de naissance : </span> <span>{{ressortissant.dateDeNaissance|date('d-m-Y')}}</span> </div>
+	        			<div class="list-group-item"> <span>Année d'obstension du bac : </span> <span>{{ressortissant.anneeVenu}}</span> </div>
+	        			
+	        		</div>
+	        	</div>
+	        	<div class="formulaire-membre">
+		        	<form method="post" class="form-horizontal" name="aergus_association_membre" id="membre-ajouter">
+		        		{{ form_errors(form) }}
+		        		<div class="niveau-res col-lg-6">
+		        			<div class="entete-info">
+			        			<p>Niveau</p>
+			        		</div>
+			        		<div class="form-ress list-group">
+				        		<div class="form-group">
+							      	{{ form_label(form.niveau, "Niveau", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.niveau) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.niveau, {'attr': {'class': 'form-control'}}) }}
+							        </div>
+						      	</div>
+						      	<div class="form-group">
+							      	{{ form_label(form.section, "Section", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.section) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.section, {'attr': {'class': 'form-control'}}) }}
+							        </div>
+						      	</div>
+					      	</div>
+		        		</div>
+		        		<div class="adresse-res col-lg-6">
+		        			<div class="entete-info">
+			        			<p>Adresse</p>
+			        		</div>
+			        		<div class="form-ress list-group">
+			        			<div class="error"></div>
+				        		<div class="form-group">
+							      	{{ form_label(form.numeroDeChambre, "Chambre", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.numeroDeChambre) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.numeroDeChambre, {'attr': {'class': 'form-control'}}) }}
+							        </div>
+						      	</div>
+						      	<div class="form-group">
+							      	{{ form_label(form.block, "Block", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.block) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.block, {'attr': {'class': 'form-control'}}) }}
+							        </div>
+						      	</div>
+						      	<div class="form-group">
+							      	{{ form_label(form.village, "Village", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.village) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.village, {'attr': {'class': 'form-control'}}) }}
+							        </div>
+						      	</div>
+					      	</div>
+
+					    </div>
+		        		<div class="fonction-res col-lg-6">
+		        			<div class="entete-info">
+			        			<p>Fonction</p>
+			        		</div>
+			        		<div class="form-ress list-group">
+				        		<div class="form-group">
+				        			<label class="col-sm-5 control-label">Membre du bureau</label>
+							        <div class="col-sm-2">
+							        	<input type="checkbox" class="form-control membrebureauverif"/>	
+							        </div>
+						      	</div>
+						      	<div class="form-group">
+							      	{{ form_label(form.fonction, "Fonction", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+							      	{{ form_errors(form.fonction) }}
+							        <div class="col-sm-9">
+							        	{{ form_widget(form.fonction, {'attr': {'class': 'form-control','disabled':true}}) }}
+							        </div>
+						      	</div>
+					      	</div>
+		        		</div>
+					</form>
+	        	</div>
+	        	<input class="info-base" type="hidden" value="{{bureau}}" name="{{id}}">	
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-primary membre-suivant">Ajouter</button>
+	          <button type="button" class="btn btn-primary membre-annuler">Annuler</button>
+	        </div>
+	  	</div>
+	</div>
+{% else %}
+	
+	<div class="modal-dialog modal-lg">
+      	<div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Inscription d'un membre</h4>
+	        </div>
+	        <div class="modal-body">
+			    <table id="ressortissant" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			            	<th class="cocher">Cocher</th>
+							<th>Prenom</th>
+							<th>Nom</th>
+							<th>Date de Naissance</th>
+							<th>Section</th>
+							<th>Bachelier</th>
+						</tr>
+			        </thead>
+			        <tbody>
+			        	{% for ressortissant in ressortissants %}
+							<tr>
+								<td class="cocher"><input type="radio" class="ressortissant-membre-check" id="{{ressortissant.id}}" name="radio"/></td>
+								<td>{{ressortissant.prenom}}</td>
+								<td>{{ressortissant.nom}}</td>
+								<td>{{ressortissant.dateDeNaissance|date('d-m-Y')}}</td>
+								<td>{{ressortissant.section.libelle}}</td>
+								<td>{{ressortissant.anneeVenu}}</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-primary terminer-membre" name="{{bureau}}">Terminer</button>
+	          <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
+	        </div>
+      	</div>
+    </div>
+    <script>
+		$("document").ready(function(){
+			$("form input.date").datepicker({
+			    dateFormat: 'dd/mm/yy',
+			    firstDay:1
+			}).attr("readonly","readonly");
+			$("document").ready(function(){
+				$('#ressortissant').DataTable( {
+			        "language": {
+			            "lengthMenu": "_MENU_ ",
+			            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+			            "info": " _PAGE_ sur _PAGES_",
+			            "infoEmpty": "No records available",
+			            "infoFiltered": "(filtered from _MAX_ total records)"
+			        }
+			    });
+			});
+		});
+	</script>
+{% endif %}
+
+<script src="{{ asset('assets/js/ajax/membre.js') }}"></script>

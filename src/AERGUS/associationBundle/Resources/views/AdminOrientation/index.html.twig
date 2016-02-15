@@ -1,0 +1,59 @@
+{% extends 'AERGUSassociationBundle::layout.html.twig'%}
+{% block body %}
+	<div id="content-ufr">
+		<div class="entete">
+			<span class="liste">Listes des Ufr</span>
+			<span class="ajout ajouter"></span>
+		</div>
+		<div id="zone">
+			<table id="ufr" class="display" cellspacing="0" width="100%">
+		        <thead>
+		            <tr>
+						<th>Ufr</th>
+						<th>Nom complet</th>
+						<th>Actions</th>
+					</tr>
+		        </thead>
+		        <tbody>
+		        	{% for ufr in ufrs %}
+						<tr>
+							<td>{{ufr.libelle}}</td>
+							<td>{{ufr.NomComplet}}</td>
+							<td>
+								<span><a title="Afficher la liste des sections" name="{{ufr.id}}" class="ligne action" href=" {{path('liste',{'id': ufr.id })}} "></a></span>
+								<span><a id="{{ufr.libelle}}" title="modifier" name="{{ufr.id}}" class="modifier modifier-ufr action" href=" {{path('aergus_association_ufr_modifier',{'libelle': ufr.libelle})}} "></a></span>
+								<span><a id="{{ufr.libelle}}" title="supprimer" class="supprimer supprimer-ufr action" name="{{ufr.id}}" href=" {{path('aergus_association_ufr_delete',{'libelle': ufr.libelle })}} "></a></span>
+							</td>
+						</tr>
+					{% endfor %}
+		        </tbody>
+			</table>
+		</div>
+		<div class="formulaire-ajout">
+			<h3>Ajouter un Ufr</h3>
+			<div class="error" style="color:"></div>
+			<form class="aergus_association_section_libelle" action="{{path('ajouter')}}" method="post" name="aergus_association_ufr" id="ufr-ajouter">
+				{{ form_errors(form) }}
+				{{ form_widget(form) }}
+				<input type="submit" value="Ajouter" class="ajout-form">
+			</form>
+			<button class="annuler">Annuler</button> 
+		</div>
+	</div>
+	<div id="sections"></div>
+	<div id="delete"></div>
+	<div id="modifier-form"></div>
+	<script>
+		$("document").ready(function(){
+			$('.display').DataTable( {
+		        "language": {
+		            "lengthMenu": "_MENU_ ",
+		            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+		            "info": " _PAGE_ sur _PAGES_",
+		            "infoEmpty": "No records available",
+		            "infoFiltered": "(filtered from _MAX_ total records)"
+		        }
+		    });
+		});
+	</script>	
+{% endblock %}

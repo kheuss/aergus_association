@@ -1,0 +1,51 @@
+<div class="modal-dialog modal-lg">
+  	<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informations</h4>
+        </div>
+        <div class="modal-body">
+        	<div class="information">
+        		
+	        	<div> 
+	        		<span class="libelle">Prenom : </span> 
+	        		<span class="content-libelle">{{ressortissant.prenom}}</span>
+	        	</div>
+
+	        	<div> 
+	        		<span class="libelle">Nom : </span> 
+	        		<span class="content-libelle">{{ressortissant.nom}}</span>
+	        	</div>
+
+	        	<div> 
+	        		<span class="libelle">Numero de téléphone: </span> 
+	        		<span class="content-libelle">{{ressortissant.numeroDeTelephone}}</span>
+	        	</div>
+
+	        	<div> 
+	        		<span class="libelle">Né le : </span> 
+	        		<span class="content-libelle">{{ressortissant.dateDeNaissance|date('d-m-Y')}}</span>
+	        	</div>
+
+	        	<div> 
+	        		<span class="libelle">Orienté en : </span> 
+	        		<span class="content-libelle">{{ressortissant.section.libelle}}</span>
+	        	</div>
+				
+				<div> 
+	        		<span class="libelle">Ufr: </span> 
+	        		<span class="content-libelle">{{ufr.libelle}}</span>
+	        	</div>
+
+	        	<div> 
+	        		<span class="libelle">Bachelier en: </span> 
+	        		<span class="content-libelle">{{ressortissant.anneeVenu}}</span>
+	        	</div>
+				
+        	</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+  	</div>
+</div>

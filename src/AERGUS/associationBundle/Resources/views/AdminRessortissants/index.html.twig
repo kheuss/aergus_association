@@ -1,0 +1,117 @@
+{% extends 'AERGUSassociationBundle::layout.html.twig'%}
+{% block body %}
+	<div class="content-ressortissant">
+		<div id="groupe-d-action">
+			<button type="button" class="btn btn-primary bouton-supprimer-multible" data-dismiss="modal"><span class="glyphicon glyphicon-trash"></span> Supprimer</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-filter"></span> Filtrer les ressortissants</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-cloud-upload"></span> Importer</button>
+			<button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-cloud-download"></span> Exporter</button>
+			<button type="button" class="btn btn-primary imprimer-ressortissant" data-dismiss="modal"><span class="glyphicon glyphicon-print"></span> Imprimer</button>
+			<button type="button" class="btn btn-primary restaurer-ressortissant" data-dismiss="modal"><span class="glyphicon glyphicon-refresh"></span> Restaurer</button>
+		</div>
+		<div class="entete">
+			<span class="liste">Liste de tous les ressortissants</span>
+			<span title="ajouter un ressortissant" class="ajout" data-toggle="modal" data-target="#ajouter-un-ressortissant"></span>
+		</div>
+		<div id="zone-ressorissats">
+			<table id="ressortissant" class="display" cellspacing="0" width="100%">
+		        <thead>
+		            <tr>
+		            	<th class="cocher cocher-suppimer-multiple">Cocher</th>
+						<th>Prenom</th>
+						<th>Nom</th>
+						<th>Numero de Téléphone</th>
+						<th>Date de Naissance</th>
+						<th>Section</th>
+						<th>Bachelier</th>
+						<th class="act">Actions</th>
+					</tr>
+		        </thead>
+		        <tbody>
+		        	{% for ressortissant in ressortissants %}
+						<tr>
+							<td class="cocher cocher-suppimer-multiple"><input type="checkbox" class="supprimer-multiple-check" name="{{ressortissant.id}}"/></td>
+							<td>{{ressortissant.prenom}}</td>
+							<td>{{ressortissant.nom}}</td>
+							<td>{{ressortissant.numeroDeTelephone}}</td>
+							<td>{{ressortissant.dateDeNaissance|date('d-m-Y')}}</td>
+							<td>{{ressortissant.section.libelle}}</td>
+							<td>{{ressortissant.anneeVenu}}</td>
+							<td class="act">
+								<span><a title="afficher ces informations" name="{{ressortissant.id}}" class="afficher-ressortissant action" href=" {{path('aergus_association_ressortissant_afficher',{'nom': ressortissant.nom})}}"><span class="glyphicon glyphicon-list-alt"></span></a></span>
+								<span><a title="modifier" name="{{ressortissant.id}}" class="modifier modifier-ressortissant action" href=" {{path('aergus_association_ressortissant_edit',{'nom': ressortissant.nom})}}"></a></span>
+								<span id="{{ressortissant.nom}}" title="supprimer" class="supprimer-ressortissant supprimer action" name="{{ressortissant.id}}"></span>
+							</td>
+						</tr>
+					{% endfor %}
+		        </tbody>
+			</table>
+			
+		</div>
+		<button type="button" class="btn btn-primary bouton-supprimer-tous" data-dismiss="modal"><span class="glyphicon glyphicon-trash"></span> Supprimer la selection</button>
+		<button type="button" class="btn btn-primary bouton-supprimer-annuler" data-dismiss="modal"> Annuler la suppression</button>
+	</div>
+
+	<div class="modal fade" id="ajouter-un-ressortissant" role="dialog">
+	    <div class="modal-dialog modal-lg">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Ajouter un nouveau ressortissant</h4>
+		        </div>
+		        <div class="modal-body">
+		         	<form action="{{path('aergus_association_ressortissant_ajouter')}}" method="post" name="aergus_association_ressortissant" id="ressortissant-ajouter">
+						{{ form_errors(form) }}
+						{{ form_widget(form) }}
+						<input type="submit" value="Ajouter" class="ajout-form">
+					</form> 
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		        </div>
+	      	</div>
+	    </div>
+  	</div>
+
+  	<div class="modal fade" id="modifier-un-ressortissant" role="dialog"></div>
+
+  	<div class="modal fade" id="supprimer-un-ressortissant" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'un ressortissant</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer ce ressortissant?</div>
+			         	<div class="bouton-confirmer">
+				         	<button type="button" class="btn btn-primary supprimer-le-ressortissant" >Oui</button>
+				         	<button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+			         	</div>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+	<script>
+		$("document").ready(function(){
+			$("form input.date").datepicker({
+			    dateFormat: 'dd/mm/yy',
+			    firstDay:1
+			}).attr("readonly","readonly");
+			$("document").ready(function(){
+				$('.display').DataTable( {
+			        "language": {
+			            "lengthMenu": "_MENU_ ",
+			            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+			            "info": " _PAGE_ sur _PAGES_",
+			            "infoEmpty": "No records available",
+			            "infoFiltered": "(filtered from _MAX_ total records)"
+			        }
+			    });
+			});
+		});
+	</script>	
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends 'AERGUSassociationBundle::layout.html.twig'%}
+{% block body %}
+	<div id="content-bureau">
+		<div class="partie-village col-md-6">
+			<div class="entete">
+				<span class="liste">Liste des bureaux</span>
+				<span title="ajouter un nouveau bureau" class="ajout" data-toggle="modal" data-target="#ajouter-un-bureau"></span>
+			</div>
+			<div id="zone-bureaux">
+				<table id="bureau" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+							<th>Bureaux</th>
+							<th>Programmes</th>
+							<th class="act">Actions</th>
+						</tr>
+			        </thead>
+			        <tbody>
+			        	{% for bureau in bureaux %}
+							<tr>
+								<td>{{bureau.nomBureau}}</td>
+								<td> <a href="{{asset('fichier/')}}{{bureau.nomPath}}"> <span class="glyphicon glyphicon-file"></span> </a> </td>
+								<td class="act">
+									<span><a title="afficher ces memebres" class="afficher-membre action" href=" {{path('aergus_association_admin_membre_home',{'bureau': bureau.nomBureau})}}"><span class="glyphicon glyphicon-list-alt"></span></a></span>
+									<span><a title="modifier" name="{{bureau.id}}" class="modifier modifier-bureau action" href="{{path('aergus_association_bureau_modifier',{'id':bureau.id})}} "></a></span>
+									<span title="supprimer" class="supprimer-bureau supprimer action" name="{{bureau.id}}"></span>
+								</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>	
+			</div>
+		</div>	
+		<div class="partie-fonction col-md-6">
+			<div class="entete">
+				<span class="liste">Liste des fonctions</span>
+			</div>
+			<div id="zone-fonctions">
+				<table id="fonction" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+							<th>Fonctions</th>
+							<th class="act">Actions</th>
+						</tr>
+			        </thead>
+			        <tbody>
+				        {% for fonction in fonctions %}
+							<tr>
+								<td>{{fonction.libelle}}</td>
+								<td class="act">
+									<span><a title="modifier" class="modifier modifier-fonction action" href="{{path('aergus_association_fonction_modifier',{'id':fonction.id})}}"></a></span>
+									<span title="supprimer" class="supprimer-fonction supprimer action" name="{{fonction.id}}"></span>
+								</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>	
+			</div>
+			<div class="formulaire-ajout-village">
+				<form role="form" class="aergus_association_fonction" action="{{path('aergus_association_fonction_ajouter')}}" method="post" name="aergus_association_fonction" id="fonction-ajouter">
+					{{ form_errors(formFonction) }}
+					<div class="form-group">
+						{{ form_widget(formFonction.libelle, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_rest(formFonction) }}
+					<input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+				</form>
+			</div>
+		</div>	
+		<div class="partie-niveau col-md-6">
+			<div class="entete">
+				<span class="liste">Liste des niveaux</span>
+			</div>
+			<div id="zone-niveaux">
+				<table id="niveau" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+							<th>Niveaux</th>
+							<th class="act">Actions</th>
+						</tr>
+			        </thead>
+			        <tbody>
+				        {% for niveau in niveaux %}
+							<tr>
+								<td>{{niveau.niveau}}</td>
+								<td class="act">
+									<span><a title="modifier" class="modifier modifier-niveau action" href="{{path('aergus_association_niveau_modifier',{'id':niveau.id})}}"></a></span>
+									<span title="supprimer" class="supprimer-niveau supprimer action" name="{{niveau.id}}"></span>
+								</td>
+							</tr>
+						{% endfor %}
+			        </tbody>
+				</table>	
+			</div>
+			<div class="formulaire-ajout-village">
+				<form role="form" class="aergus_association_niveau" action="{{path('aergus_association_niveau_ajouter')}}" method="post" name="aergus_association_niveau" id="niveau-ajouter">
+					{{ form_errors(formNiveau) }}
+					<div class="form-group">
+						{{ form_widget(formNiveau.niveau, {'attr': {'class': 'form-control'}}) }}
+					</div>
+					{{ form_rest(formNiveau) }}
+					<input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="ajouter-un-bureau" role="dialog">
+	    <div class="modal-dialog content-bureau-popup">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Ajouter un nouveau bureau</h4>
+		        </div>
+		        <div class="modal-body">
+		     		<form class="aergus_association_bureau"  role="form" action="{{path('aergus_association_bureau_ajouter')}}" method="post" name="aergus_association_ufr" id="bureau-ajouter">
+						{{ form_errors(form) }}
+		    			{% form_theme form.programme 'AERGUSassociationBundle:AdminBureau:entity.html.twig' %}
+						{{ form_widget(form) }}
+						<input type="submit" value="Ajouter" class="ajout-form btn btn-primary">
+					</form>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		        </div>
+	      	</div>
+	    </div>
+  	</div>
+  	<div class="modal fade" id="supprimer-un-bureau" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'un bureau</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer ce bureau?</div>
+		        </div>
+		        <div class="modal-footer">
+				    <button type="button" class="btn btn-primary supprimer-le-bureau" >Oui</button>
+		          	<button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+
+    <div class="modal fade" id="supprimer-une-fonction" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'une function</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer cette function?</div>
+		        </div>
+		        <div class="modal-footer">
+				    <button type="button" class="btn btn-primary supprimer-la-function" >Oui</button>
+		          	<button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+    <div class="modal fade" id="supprimer-un-niveau" role="dialog">
+	    <div class="modal-dialog">
+	      	<div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Suppression d'un niveau</h4>
+		        </div>
+		        <div class="modal-body">
+		          <div class="confirmer">Voulez-vous réellement supprimer ce niveau?</div>
+		        </div>
+		        <div class="modal-footer">
+				    <button type="button" class="btn btn-primary supprimer-le-niveau" >Oui</button>
+		          	<button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+		        </div>
+	      	</div>
+	    </div>	
+    </div>
+    <div class="modal fade" id="modifier-un-bureau" role="dialog"></div>
+    <script>
+		$("document").ready(function(){
+			$("document").ready(function(){
+				$('.display').DataTable( {
+			        "language": {
+			            "lengthMenu": "_MENU_ ",
+			            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+			            "info": " _PAGE_ sur _PAGES_",
+			            "infoEmpty": "No records available",
+			            "infoFiltered": "(filtered from _MAX_ total records)"
+			        }
+			    });
+			});
+		});
+	</script>
+{% endblock %}

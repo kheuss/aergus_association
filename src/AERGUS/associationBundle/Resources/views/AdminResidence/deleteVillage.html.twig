@@ -1,0 +1,33 @@
+<table id="village" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+			<th>Villages</th>
+			<th class="action-adresse">Actions</th>
+		</tr>
+    </thead>
+    <tbody>
+    	{% for Village in villages %}
+			<tr>
+				<td>{{Village.village}}</td>
+				<td class="action-adresse">
+					<span><a id="{{Village.village}}" title="modifier" name="{{Village.id}}" class="modifier modifier-village action"></a></span>
+					<span><a id="{{Village.village}}" title="supprimer" class="supprimer supprimer-village action" name="{{Village.id}}"></a></span>
+				</td>
+			</tr>
+		{% endfor %}
+    </tbody>
+</table>
+<script>
+	$("document").ready(function(){
+		$('#village').DataTable( {
+	        "language": {
+	            "lengthMenu": "_MENU_ ",
+	            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+	            "info": " _PAGE_ sur _PAGES_",
+	            "infoEmpty": "No records available",
+	            "infoFiltered": "(filtered from _MAX_ total records)"
+	        }
+	    });
+	});
+</script>
+<script src="{{ asset('assets/js/ajax/adresse.js') }}"></script>

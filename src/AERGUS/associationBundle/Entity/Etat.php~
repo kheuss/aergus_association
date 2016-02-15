@@ -1,0 +1,37 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="Etat")
+     */
+    class Etat
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="integer")
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="text")
+         */
+        protected $notification;
+
+        /**
+         * @ORM\Column(type="date")
+         */
+        protected $date;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Projet", inversedBy="etats")
+         * @ORM\JoinColumn(name="Projet_id", referencedColumnName="id")
+         */
+        protected $projet;
+
+    }

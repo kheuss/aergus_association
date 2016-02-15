@@ -1,0 +1,111 @@
+li{
+	list-style-type: none;
+	list-style-image: none;
+	list-style: none;
+}
+#adminstration{
+	float: left;
+	width: 100%;
+	background: $bleu;
+	position: fixed;
+	top: 0;
+	box-shadow: 2px 2px 12px;
+	z-index: 12;
+	.admin{
+		float: left;
+		margin: 0;
+		>li{
+			float: left;
+			padding: 5px 20px;
+			position: relative;
+			cursor: pointer;
+			&:hover{
+				background:rgb(41,50,156);
+			}
+			a{
+				color: #fff;
+				&:before{
+					position:absolute;
+					display: block;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+#main-menu{
+	padding-top: 60px;
+	.menu{
+		li{
+			height: 45px;
+			line-height: 45px;
+			padding-left: 70px;
+			position: relative;
+			cursor: pointer;
+			&:hover{
+				background:rgb(41,50,156);
+			} 
+			a{
+				color: #fff;
+				font-size: 1em;
+				&:before{
+					display:block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					content: "";
+				}
+			}
+		}
+		.item{
+			position: relative;
+			&:before{
+				font-family:'aergus';
+				color: rgb(41,50,156);
+				position: absolute;
+				font-size: 28px;
+				left: 20px;
+			}
+		}
+		.ufr{
+			&:before{
+				content:"\f0d7";
+				font-size: 35px;
+			}
+		}
+		.ressortissant:before {
+		    content: "\e972";
+		    /*font-size: 35px;*/
+		}
+		.membre:before {
+		    content: "\f0c0";
+		    /*font-size: 35px;*/
+		}
+		.bureau:before {
+		    content: "\e602";
+		    /*font-size: 35px;*/
+
+		}
+		.tresorie:before {
+		    content: "\f096";
+		    /*font-size: 35px;*/
+		}
+		.projet:before {
+		    content: "\f0c1";
+		    /*font-size: 35px;*/
+		}
+		.reunion:before {
+		    content: "\f1e0";
+		    /*font-size: 35px;*/
+		}
+		.village:before {
+		    content: "\f015";
+		}
+	}
+}

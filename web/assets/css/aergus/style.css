@@ -1,0 +1,125 @@
+@font-face {
+	font-family: 'aergus';
+	src:url('fonts/aergus.eot?o3zbj8');
+	src:url('fonts/aergus.eot?o3zbj8#iefix') format('embedded-opentype'),
+		url('fonts/aergus.ttf?o3zbj8') format('truetype'),
+		url('fonts/aergus.woff?o3zbj8') format('woff'),
+		url('fonts/aergus.svg?o3zbj8#aergus') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'aergus';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-key:before {
+	content: "\e601";
+}
+.icon-group:before {
+	content: "\e602";
+}
+.icon-pencil:before {
+	content: "\e603";
+}
+.icon-lock-closed-outline:before {
+	content: "\e600";
+}
+.icon-attachment:before {
+	content: "\e800";
+}
+.icon-new-message:before {
+	content: "\e801";
+}
+.icon-triangle-right:before {
+	content: "\e802";
+}
+.icon-database2:before {
+	content: "\f096";
+}
+.icon-mortar-board2:before {
+	content: "\f0d7";
+}
+.icon-puzzle:before {
+	content: "\f0c1";
+}
+.icon-users:before {
+	content: "\e972";
+}
+.icon-user:before {
+	content: "\e971";
+}
+.icon-abonne:before {
+	content: "\e973";
+}
+.icon-bin:before {
+	content: "\e9ac";
+}
+.icon-plus:before {
+	content: "\ea0a";
+}
+.icon-trash-o:before {
+	content: "\f014";
+}
+.icon-home:before {
+	content: "\f015";
+}
+.icon-pencil2:before {
+	content: "\f040";
+}
+.icon-map-marker:before {
+	content: "\f041";
+}
+.icon-tint:before {
+	content: "\f043";
+}
+.icon-edit:before {
+	content: "\f044";
+}
+.icon-pencil-square-o:before {
+	content: "\f044";
+}
+.icon-group2:before {
+	content: "\f0c0";
+}
+.icon-users2:before {
+	content: "\f0c0";
+}
+.icon-list-ul:before {
+	content: "\f0ca";
+}
+.icon-clipboard:before {
+	content: "\f0ea";
+}
+.icon-paste:before {
+	content: "\f0ea";
+}
+.icon-rocket:before {
+	content: "\f135";
+}
+.icon-graduation-cap:before {
+	content: "\f19d";
+}
+.icon-mortar-board:before {
+	content: "\f19d";
+}
+.icon-database:before {
+	content: "\f1c0";
+}
+.icon-share-alt:before {
+	content: "\f1e0";
+}
+.icon-user-plus:before {
+	content: "\f234";
+}
+

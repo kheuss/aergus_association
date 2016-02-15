@@ -1,0 +1,4 @@
+services:
+#    aergu_sassociation.example:
+#        class: AERGUS\associationBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

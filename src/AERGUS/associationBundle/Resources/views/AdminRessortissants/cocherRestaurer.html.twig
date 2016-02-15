@@ -1,0 +1,54 @@
+<div class="modal-dialog modal-lg">
+  	<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Restaurer des ressortissants supprimés</h4>
+        </div>
+        <div class="modal-body">
+    		<table id="ressortissant-restaurer" class="display" cellspacing="0" width="100%">
+			    <thead>
+			        <tr>
+						<th class="cocher">Cocher</th>
+						<th>Prenom</th>
+						<th>Nom</th>
+						<th>Numero de Téléphone</th>
+						<th>Date de Naissance</th>
+						<th>Section</th>
+						<th>Bachelier</th>
+					</tr>
+			    </thead>
+			    <tbody>
+			    	{% for ressortissant in ressortissants %}
+						<tr>
+							<td class="cocher"><input type="checkbox" class="cocher-restaurer" name="{{ressortissant.id}}"/></td>
+							<td>{{ressortissant.prenom}}</td>
+							<td>{{ressortissant.nom}}</td>
+							<td>{{ressortissant.numeroDeTelephone}}</td>
+							<td>{{ressortissant.dateDeNaissance|date('d-m-Y')}}</td>
+							<td>{{ressortissant.section.libelle}}</td>
+							<td>{{ressortissant.anneeVenu}}</td>
+						</tr>
+					{% endfor %}
+			    </tbody>
+			</table>
+			<button type="button" class="btn btn-primary restaurer-les-ressortissants">Restaurer</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        </div>
+  	</div>
+</div>
+<script>
+	$("document").ready(function(){
+		$('#ressortissant-restaurer').DataTable( {
+	        "language": {
+	            "lengthMenu": "_MENU_ ",
+	            "zeroRecords": "Desole aucun resultat n'a été trouvé",
+	            "info": " _PAGE_ sur _PAGES_",
+	            "infoEmpty": "No records available",
+	            "infoFiltered": "(filtered from _MAX_ total records)"
+	        }
+	    });
+	});
+</script>
+<script src="{{ asset('assets/js/ajax/ressortissants.js') }}"></script>

@@ -1,0 +1,44 @@
+{% if type== 'formulaire' %}
+  <div class="modal-dialog content-bureau-popup">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modifier ce bureau</h4>
+      </div>
+      <div class="modal-body">
+      <form class="aergus_association_bureau"  role="form" action="{{path('aergus_association_bureau_modifier',{'id':id})}} " method="post" name="aergus_association_ufr" id="bureau-modifier">
+      {{ form_errors(form) }}
+        {% form_theme form.programme 'AERGUSassociationBundle:AdminBureau:entity.html.twig' %}
+      {{ form_widget(form) }}
+      <input type="submit" value="Modifier" class="ajout-form btn btn-primary">
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <table id="bureau" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Bureaux</th>
+            <th>Programmes</th>
+            <th class="act">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for bureau in bureaux %}
+        <tr>
+          <td>{{bureau.nomBureau}}</td>
+          <td> <a href="../../../../fichier/{{bureau.nomPath}}"> <span class="glyphicon glyphicon-file"></span> </a> </td>
+          <td class="act">
+            <span><a title="modifier" name="{{bureau.id}}" class="modifier modifier-bureau action" href="{{path('aergus_association_bureau_modifier',{'id':bureau.id})}} "></a></span>
+            <span title="supprimer" class="supprimer-bureau supprimer action" name="{{bureau.id}}"></span>
+          </td>
+        </tr>
+      {% endfor %}
+        </tbody>
+  </table>
+{% endif %}
+<script src="{{ asset('assets/js/ajax/bureau.js') }}"></script>

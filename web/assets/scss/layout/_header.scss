@@ -1,0 +1,11 @@
+#header{
+	background: #fff;
+	min-height: 120px;
+	position: relative;
+	border-bottom: 2px solid $bleu;
+	padding-bottom: 5px;
+	#banniere{
+		background: url('../images/logo.png') no-repeat;
+		height: 150px;
+	}
+}

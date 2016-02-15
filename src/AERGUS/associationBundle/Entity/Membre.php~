@@ -1,0 +1,82 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+
+    /**
+     * @ORM\Entity(repositoryClass="AERGUS\associationBundle\Entity\MembreRepository")
+     * @ORM\Table(name="Membre")
+     */
+    class Membre
+    {
+        /**
+         * @ORM\Id
+         * @ORM\Column(type="string")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="integer")
+         */
+        protected $numeroDeChambre;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Ressortissants", inversedBy="membres")
+         * @ORM\JoinColumn(name="ressortissant_id", referencedColumnName="id")
+         */
+        protected $ressortissant;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Block", inversedBy="membres")
+         * @ORM\JoinColumn(name="block_id", referencedColumnName="id")
+         */
+        protected $block;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Niveau", inversedBy="membres")
+         * @ORM\JoinColumn(name="niveau_id", referencedColumnName="id")
+         */
+        protected $niveau;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Section", inversedBy="membres")
+         * @ORM\JoinColumn(name="section_id", referencedColumnName="id")
+         */
+        protected $section;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Village", inversedBy="membres")
+         * @ORM\JoinColumn(name="village_id", referencedColumnName="id")
+         */
+        protected $village;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Bureau", inversedBy="membres")
+         * @ORM\JoinColumn(name="Bureau_id", referencedColumnName="id")
+         */
+        protected $bureau;
+
+        /**
+         * @ORM\ManyToOne(targetEntity="Fonction", inversedBy="membres")
+         * @ORM\JoinColumn(name="fonction_id", referencedColumnName="id")
+         */
+        protected $fonction;
+
+        /**
+         * @ORM\OneToOne(targetEntity="CarteMembre", cascade={"persist"})
+        */
+        private $carte; 
+
+        /**
+         * @ORM\ManyToMany(targetEntity="Reunion", cascade={"persist"})
+        */
+        private $reunions; 
+
+        public function __construct()
+        {
+            $this->reunions = new ArrayCollection();
+        }
+
+}

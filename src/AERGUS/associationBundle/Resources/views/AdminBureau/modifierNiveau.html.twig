@@ -1,0 +1,62 @@
+{% if type== 'formulaire' %}
+  <div class="modal-dialog content-bureau-popup">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modifier cette fonction</h4>
+      </div>
+      <div class="modal-body">
+        <div class="formulaire-ajout-village">
+          <form role="form" class="aergus_association_niveau" action="{{path('aergus_association_niveau_modifier',{'id':id})}}" method="post" name="aergus_association_niveau" id="niveau-modifier">
+            {{ form_errors(formNiveau) }}
+            <div class="form-group">
+              {{ form_widget(formNiveau.niveau, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_rest(formNiveau) }}
+            <input type="submit" value="Modifier" class="ajout-form btn btn-primary">
+          </form>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+{% else %}
+   <table id="niveau" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+      <th>Niveaux</th>
+      <th class="act">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for niveau in niveaux %}
+      <tr>
+        <td>{{niveau.niveau}}</td>
+        <td class="act">
+          <span><a title="modifier" class="modifier modifier-niveau action" href="{{path('aergus_association_niveau_modifier',{'id':niveau.id})}}"></a></span>
+          <span title="supprimer" class="supprimer-niveau supprimer action" name="{{niveau.id}}"></span>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+  $("document").ready(function(){
+    $("document").ready(function(){
+      $('#niveau').DataTable( {
+            "language": {
+                "lengthMenu": "_MENU_ ",
+                "zeroRecords": "Desole aucun resultat n'a été trouvé",
+                "info": " _PAGE_ sur _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtered from _MAX_ total records)"
+            }
+        });
+    });
+  });
+</script>
+{% endif %}
+<script src="{{ asset('assets/js/ajax/bureau.js') }}"></script>

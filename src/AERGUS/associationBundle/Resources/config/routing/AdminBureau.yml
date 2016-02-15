@@ -1,0 +1,44 @@
+#page d'accueil des bureaux
+aergus_association_bureau_home:
+    pattern: /
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:index}
+
+aergus_association_bureau_ajouter_programme:
+    pattern: /ajouter-programme
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:ajouterProgramme}
+
+aergus_association_bureau_ajouter:
+    pattern: /ajouter-bureau
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:ajouterBureau}
+
+aergus_association_bureau_supprimer:
+    pattern: /supprimer-bureau/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:supprimerBureau}
+
+aergus_association_bureau_modifier:
+    pattern: /modifier-bureau/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:modifierBureau}
+
+aergus_association_fonction_ajouter:
+    pattern: /ajouter-fonction
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:ajouterFonction}
+
+aergus_association_fonction_supprimer:
+    pattern: /supprimer-fonction/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:supprimerFonction}
+
+aergus_association_fonction_modifier:
+    pattern: /modifier-fonction/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:modifierFonction}
+
+aergus_association_niveau_ajouter:
+    pattern: /ajouter-niveau
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:ajouterNiveau}
+
+aergus_association_niveau_supprimer:
+    pattern: /supprimer-niveau/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:supprimerNiveau}
+
+aergus_association_niveau_modifier:
+    pattern: /modifier-niveau/{id}
+    defaults: { _controller: AERGUSassociationBundle:AdminBureau:modifierNiveau}

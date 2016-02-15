@@ -1,0 +1,71 @@
+<?php
+
+    namespace AERGUS\associationBundle\Entity;
+
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+    use Symfony\Component\Validator\Constraints as Assert;
+
+    /**
+     * Bureau
+     * @ORM\Entity
+     * @ORM\Table(name="Bureau")
+     */
+    class Bureau
+    {
+        /**
+         * @var integer
+         * @ORM\Column(type="integer")
+         * @ORM\Id
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        protected $id;
+
+        /**
+         * @ORM\Column(type="string")
+         */
+        protected $nom;
+
+         /**
+         * @ORM\OneToOne(targetEntity="Programme")
+         */
+        protected $programme;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Membre", mappedBy="bureau")
+         */
+        protected $membres;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Sortant", mappedBy="bureau")
+         */
+        protected $sorties;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Entrant", mappedBy="bureau")
+         */
+        protected $entrees;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Reunion", mappedBy="bureau")
+         */
+        protected $reunions;
+
+        /**
+         * @ORM\ManyToMany(targetEntity="Projet", cascade={"persist"})
+        */
+        private $projets; 
+
+        public function __construct()
+        {
+            $this->membres = new ArrayCollection();
+            $this->sorties = new ArrayCollection();
+            $this->entrees = new ArrayCollection();
+            $this->reunions = new ArrayCollection();
+            $this->projets = new ArrayCollection();
+        }
+
+    
+    
+
+}
